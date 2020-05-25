@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Winter Olympics</title>
+</head>
+
+    <!-- Styles -->
+    <link href="https://fonts.googleapis.com/css?family=Montserrat:400,600,700" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,400i,700,700i" rel="stylesheet">
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="css/fontawesome-all.css" rel="stylesheet">
+	  <link href="css/winterstyle.css" rel="stylesheet">
+
+<body>
+
+    <header>
+        <a class="logo" id="logo" href="landing-page.html"><img src="images/logo.png" alt="logo"></a>
+        <nav>
+            <ul class="nav__links">
+                <li><a href="#mapid">Map</a></li>
+                <li><a href="#page">Timeline</a></li>
+            </ul>
+        </nav>
+        <a class="cta" href="summerolympics.html">Summer Olympics</a>
+    </header>
+
+    <button onclick="topFunction()" id="myBtn" title="Go to top">Top</button>
+
+<!-- Welcome to some sample code to use Leaflet Maps -->
+<!-- HERE IS YOUR HTML TO SET UP YOUR PAGE -->
+    <head>
+        
+        <!-- This link and script are both needed for the Leaflet Map API to work -->
+
+        <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+        integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+        crossorigin=""/>
+        <!-- Make sure you put this AFTER Leaflet's CSS -->
+        <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+        integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+        crossorigin=""></script>
+
+        <!-- This is the section for CSS Style commands-->
+ 
+    </head>
+
+            <h1 id="uid"></h1> <!-- This is a placeholder for future database applications -->
+
+            <div id="mapid" class="mapid"></div> <!-- Put this marker where you want the map to be -->
+
+            <div></div>
+    
+    <!-- HERE IS THE JAVASCRIPT TO ENHANCE YOUR MAP -->
+
+    <script>
+
+      //Get the button
+      var mybutton = document.getElementById("myBtn");
+
+      // When the user scrolls down 20px from the top of the document, show the button
+      window.onscroll = function() {scrollFunction()};
+
+      function scrollFunction() {
+        if (document.body.scrollTop > 20 || document.documentElement.scrollTop > 20) {
+          mybutton.style.display = "block";
+        } else {
+          mybutton.style.display = "none";
+        }
+      }
+
+      // When the user clicks on the button, scroll to the top of the document
+      function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+      }
+
+        // This will be the center of the map as it loads
+    	var myGPS = L.latLng(37.668109, 128.706010);
+    	
+        // This creates the map object and sets the zoom level
+        var mymap = L.map('mapid').setView(myGPS, 15); // zoom level set to 15, but can range from 0 to 18
+
+        // All Maps must have the copyright and "credits" info
+        L.tileLayer('https://api.mapbox.com/styles/v1/{id}/tiles/{z}/{x}/{y}?access_token={accessToken}', {
+          attribution: 'Map data &copy; <a href="https://www.openstreetmap.org/">OpenStreetMap</a> contributors, <a href="https://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Imagery © <a href="https://www.mapbox.com/">Mapbox</a>',
+          maxZoom: 18,
+          id: 'mapbox/streets-v11',
+          //id: 'mapbox/satellite-v9',
+          tileSize: 512,
+          zoomOffset: -1,
+
+          // You have a signup at MapBox to get your own access token!
+          accessToken: 'pk.eyJ1IjoiZXZhbi12YW4iLCJhIjoiY2thbGZiMWFqMTB4YzJ5bDZ2cG9pdnRjcCJ9.cAm-janPiiq6iuqd23XQ5g'
+        }).addTo(mymap);
+
+        // Add some location markers. You can look up GPS coordinates online
+
+        var marker1 = L.marker([37.668109, 128.706010]).addTo(mymap); // mark of PyeongChang 2018
+        var marker2 = L.marker([43.403545, 39.955343]).addTo(mymap); // mark of Sochi 2014
+        var marker3 = L.marker([49.278584, -123.112085]).addTo(mymap); // mark of Vancouver 2010
+        var marker4 = L.marker([45.043809, 7.649580]).addTo(mymap); // mark of Turin 2006
+        var marker5 = L.marker([40.761405, -111.848564]).addTo(mymap); // mark of Salt Lake City 2002
+        var marker6 = L.marker([36.580052, 138.165734]).addTo(mymap); // mark of Nagano 1998
+        var marker7 = L.marker([61.126668, 10.488306]).addTo(mymap); // mark of Lillehammer 1994
+        var marker8 = L.marker([45.829183, 6.383909]).addTo(mymap); // mark of Albertville 1992
+        var marker9 = L.marker([51.071404, -114.121337]).addTo(mymap); // mark of Calgary 1988
+        var marker10 = L.marker([43.880219, 18.406450]).addTo(mymap); // mark of Sarajevo 1984
+        var marker11 = L.marker([44.261428, -73.962621]).addTo(mymap); // mark of Lake Placid 1980 & 1932
+        var marker12 = L.marker([47.258293, 11.409034]).addTo(mymap); // mark of Innsbruck 1964 & 1976
+        var marker13 = L.marker([42.997983, 141.342947]).addTo(mymap); // mark of Sapporo 1972
+        var marker14 = L.marker([45.187647, 5.740096]).addTo(mymap); // mark of Grenoble 1968
+        var marker15 = L.marker([43.736549, -81.431912]).addTo(mymap); // mark of Squaw Valley 1960
+        var marker16 = L.marker([46.534761, 12.136866]).addTo(mymap); // mark of Cortina D'Ampezzo 1956
+        var marker17 = L.marker([59.925915, 10.733847]).addTo(mymap); // mark of Oslo 1952
+        var marker18 = L.marker([46.502239, 9.847417]).addTo(mymap); // mark of St. Mortiz 1928 & 1948
+        var marker19 = L.marker([47.480731, 11.119361]).addTo(mymap); // mark of Garmisch-Partenkirchen 1936
+        var marker20 = L.marker([45.927473, 6.874167]).addTo(mymap); // mark of Chamonix 1924
+
+        // Here we can add pop-ups to various locations
+
+        marker1.bindPopup("<b>PyeongChang Winter Olympics of 2018</b>").openPopup();
+        marker2.bindPopup("<b>Sochi Winter Olympics of 2014</b>");
+        marker3.bindPopup("<b>Vancouver Winter Olympics of 2010</b>");
+        marker4.bindPopup("<b>Turin Winter Olympics of 2006</b>");
+        marker5.bindPopup("<b>Salt Lake City Winter Olympics of 2002</b>");
+        marker6.bindPopup("<b>Nagano Winter Olympics of 1998</b>");
+        marker7.bindPopup("<b>Lillehammer Winter Olympics of 1994</b>");
+        marker8.bindPopup("<b>Albertville Winter Olympics of 1992</b>");
+        marker9.bindPopup("<b>Calgary Winter Olympics of 1988</b>");
+        marker10.bindPopup("<b>Sarajevo Winter Olympics of 1984</b>");
+        marker11.bindPopup("<b>Lake Placid Winter Olympics of 1932 & 1980</b>");
+        marker12.bindPopup("<b>Innsbruck Winter Olympics of 1964 & 1976</b>");
+        marker13.bindPopup("<b>Sapporo Winter Olympics of 1972</b>");
+        marker14.bindPopup("<b>Grenoble Winter Olympics of 1968</b>");
+        marker15.bindPopup("<b>Squaw Valley Winter Olympics of 1960</b>");
+        marker16.bindPopup("<b>Cortina D'Ampezzo Winter Olympics of 1956</b>");
+        marker17.bindPopup("<b>Oslo Winter Olympics of 1952</b>");
+        marker18.bindPopup("<b>St. Moritz Winter Olympics of 1928 & 1948</b>");
+        marker19.bindPopup("<b>Garmisch-Partenirchen Winter Olympics of 1936</b>");
+        marker20.bindPopup("<b>Chamonix Winter Olympics of 1924</b>");
+       
+    </script>
+
+<div class="page" id="page">
+    <div class="timeline">
+      <div class="timeline__group">
+        <span class="timeline__year">1924</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">25</span>
+            <span class="timeline__month">Jan</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+              <p>Chamonix Winter Olympics of 1924 <br> Date: 25 Jan - 05 Feb <br> Location: Chamonix, France <br> Athletes: 258 <br> Countries: 16 <br> Events: 16</p>
+            </div>
+          </div>
+        </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1928</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">11</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>St. Moritz Winter Olympics of 1928 <br> Date: 11 Feb - 19 Feb <br> Location: St. Moritz, Switzerland <br> Athletes: 464 <br> Countries: 25 <br> Events: 14</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1932</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">04</span>
+            <span class="timel12ine__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Lake Placid Winter Olympics of 1932 <br> Date: 04 Feb - 15 Feb <br> Location: Lake Placid, U.S.A. <br> Athletes: 252 <br> Countries: 17 <br> Events: 14</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1936</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">06</span>
+            <span class="timeline__month">Apr</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Garmisch-Partenirchen Winter Olympics of 1936 <br> Date: 06 Feb - 16 Feb <br> Location: Garmisch-Partenirchen, Germany <br> Athletes: 646 <br> Countries: 28 <br> Events: 17</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1948</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">30</span>
+            <span class="timeline__month">Jan</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+              <p>St. Moritz Winter Olympics of 1948 <br> Date: 30 Jan - 08 Feb <br> Location: St. Moritz, Switzerland <br> Athletes: 669 <br> Countries: 28 <br> Events: 22</p>
+            </div>
+          </div>
+        </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1952</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">14</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Oslo Winter Olympics of 1952 <br> Date: 14 Feb - 25 Feb <br> Location: Oslo, Norway <br> Athletes: 694 <br> Countries: 30 <br> Events: 22</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1956</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">26</span>
+            <span class="timeline__month">Jan</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Cortina D'Ampezzo Winter Olympics of 1956 <br> Date: 26 Jan - 05 Feb <br> Location: Cortina D'Ampezzo, Italy <br> Athletes: 821 <br> Countries: 32 <br> Events: 24</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1960</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">18</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Squaw Valley Winter Olympics of 1960 <br> Date: 18 Feb - 28 Feb <br> Location: Squaw Valley, U.S.A. <br> Athletes: 665 <br> Countries: 30 <br> Events: 27</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1964</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">29</span>
+            <span class="timeline__month">Jan</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+              <p>Innsbruck Winter Olympics of 1964 <br> Date: 29 Jan - 09 Feb <br> Location: Innsbruck, Austria <br> Athletes: 1091 <br> Countries: 36 <br> Events: 34</p>
+            </div>
+          </div>
+        </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1968</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">06</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Grenoble Winter Olympics of 1968 <br> Date: 06 Feb - 18 Feb <br> Location: Grenoble, France <br> Athletes: 1158 <br> Countries: 37 <br> Events: 35</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1972</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">03</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Sapporo Winter Olympics of 1972 <br> Date: 03 Feb - 13 Feb <br> Location: Saporro, Japan <br> Athletes: 1006 <br> Countries: 35 <br> Events: 35</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1976</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">04</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Innsbruck Winter Olympics of 1976 <br> Date: 04 Feb - 15 Feb <br> Location: Innsbruck, Austria <br> Athletes: 1123 <br> Countries: 37 <br> Events: 37</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1980</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">13</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+              <p>Lake Placid Winter Olympics of 1980 <br> Date: 13 Feb - 24 Feb <br> Location: Lake Placid, U.S.A. <br> Athletes: 1072 <br> Countries: 37 <br> Events: 38</p>
+            </div>
+          </div>
+        </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1984</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">08</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Sarajevo Winter Olympics of 1984 <br> Date: 08 Feb - 19 Feb <br> Location: Sarajevo, Yugoslavia <br> Athletes: 1272 <br> Countries: 49 <br> Events: 39</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1988</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">10</span>
+            <span class="timeline__month">Oct</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Calgary Winter Olympics of 1988 <br> Date: 13 Feb - 28 Feb <br> Location: Calgery, Canada <br> Athletes: 1423 <br> Countries: 57 <br> Events: 46</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1992</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">08</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Albertville Winter Olympics of 1992 <br> Date: 08 Feb - 23 Feb <br> Location: Albertville, France <br> Athletes: 1801 <br> Countries: 64 <br> Events: 57</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1994</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">12</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Lillehammer Winter Olympics of 1994 <br> Date: 12 Feb - 27 Feb <br> Location: Lillehammer, Norway <br> Athletes: 1737 <br> Countries: 67 <br> Events: 61</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">1998</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">07</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+              <p>Nagano Winter Olympics of 1998 <br> Date: 07 Feb - 22 Feb <br> Location: Nagano, Japan <br> Athletes: 2176 <br> Countries: 72 <br> Events: 68</p>
+            </div>
+          </div>
+        </div>
+      <div class="timeline__group">
+        <span class="timeline__year">2002</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">08</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Salt Lake City Winter Olympics of 2002 <br> Date: 08 Feb - 24 Feb <br> Location: Salt Lake City, U.S.A. <br> Athletes: 2399 <br> Countries: 77 <br> Events: 78</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">2006</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">10</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Turin Winter Olympics of 2006 <br> Date: 10 Feb - 26 Feb <br> Location: Turin, Italy <br> Athletes: 2508 <br> Countries: 80 <br> Events: 84</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">2010</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">12</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+              <p>Vancouver Winter Olympics of 2010 <br> Date: 12 Feb - 28 Feb <br> Location: Vancouver, Canada <br> Athletes: 2566 <br> Countries: 82 <br> Events: 86</p>
+            </div>
+          </div>
+        </div>
+      <div class="timeline__group">
+        <span class="timeline__year">2014</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">07</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>Sochi Winter Olympics of 2014 <br> Date: 07 Feb - 23 Feb <br> Location: Sochi, Russia <br> Athletes: 2780 <br> Countries: 88 <br> Events: 98</p>
+          </div>
+        </div>
+      </div>
+      <div class="timeline__group">
+        <span class="timeline__year">2018</span>
+        <div class="timeline__box">
+          <div class="timeline__date">
+            <span class="timeline__day">09</span>
+            <span class="timeline__month">Feb</span>
+          </div>
+          <div class="timeline__post">
+            <div class="timeline__content">
+                <p>PyeongChang Winter Olympics of 2018 <br> Date: 09 Feb - 25 Feb <br> Location: PyeongChang, Republic of Korea <br> Athletes: 2833 <br> Countries: 92 <br> Events: 102</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
